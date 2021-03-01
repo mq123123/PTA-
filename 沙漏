@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+    int N;
+    int res;
+    int row = 0;
+    char ch;
+    scanf("%d",&N);
+    getchar();
+    scanf("%c",&ch);
+    
+    while(1){
+        if(2*pow(row,2)-1>N)
+            break;
+        else
+            row++;
+    }
+    row--;
+    
+    for(int i = row;i>=2;i--){   //上半部分
+        for(int j =1;j<=row-i;j++)   //先打印空格然后再打印符号
+            printf(" ");
+        for(int k =1;k<=2*i-1;k++)
+            printf("%c",ch);
+        printf("\n");
+    }
+    for(int i = 1;i<=row;i++){
+        for(int j =1;j<=row-i;j++)
+            printf(" ");
+        for(int k =1;k<=2*i-1;k++)
+            printf("%c",ch);
+        printf("\n");
+    }
+    res = N-(2*pow(row,2)-1);
+    printf("%d\n",res);
+    return 0;
+}
