@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+	int N;   //输入所求的数字 
+	scanf("%d",&N);
+	int count=0;    //计数器 
+	int start=0;    //标记起始位置 
+	int m_count=0;   //最大的因子个数 
+		//sqrt返回正的平方根 
+	for(int i=2;i<=sqrt(N);i++){
+		count=0;
+		int t=N;
+		int j=i;
+		while(t%j==0){
+			t=t/j;
+			j++;
+			count++;
+		}
+		if(count>m_count){
+			start=i;
+			m_count=count;
+		}	
+	}
+	if(m_count){    //考虑特殊情况count计数器为零的情况
+		printf("%d\n",m_count);
+		for(int i=0;i<m_count;i++){
+			printf("%d",start+i);
+			if(i!=m_count-1){   //即i不是在最后一个位置就打印*号
+				printf("*");
+			}
+		}
+	}
+	/*
+ 	  千万不要忘记素数这种情况，如果输入的值是素数，那么它的因子就是 1 和它本身了，
+  	 但是题目要求1不能打印，所以我们最终只需输出它本身就可以了 
+	*/ 
+	else{                 
+		printf("%d\n%d",1,N);
+	}
+	
+	return 0;
+} 
